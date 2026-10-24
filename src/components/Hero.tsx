@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { ArrowDown, Download, Github, Linkedin, Mail, Terminal, ChefHat } from "lucide-react";
 import { links, profile } from "../lib/data";
-import { useFileExists } from "../lib/hooks";
 
 const snippet = `const sravya = {
   role: "CS student, KLU",
@@ -33,7 +32,6 @@ function CodeWindow() {
 }
 
 export default function Hero() {
-  const hasResume = useFileExists(profile.resumeFile);
   return (
     <section id="home" className="hero-glow relative overflow-hidden pt-16">
       <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1.2fr_1fr] lg:py-28">
@@ -45,11 +43,7 @@ export default function Hero() {
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#projects" className="btn-primary"><ArrowDown size={16} />View My Projects</a>
             <a href="#contact" className="btn-ghost"><Mail size={16} />Contact Me</a>
-            {hasResume ? (
-              <a href={profile.resumeFile} download className="btn-ghost"><Download size={16} />Download Resume</a>
-            ) : (
-              <button disabled title="Add the resume PDF to /public to enable this button" className="btn-ghost cursor-not-allowed opacity-50"><Download size={16} />Download Resume</button>
-            )}
+            <a href={profile.resumeFile} download className="btn-ghost"><Download size={16} />Download Resume</a>
           </div>
           <ul className="mt-8 flex gap-3">
             {[[Github, "GitHub", links.github], [Linkedin, "LinkedIn", links.linkedin], [Terminal, "LeetCode", links.leetcode], [ChefHat, "CodeChef", links.codechef]].map(([Icon, label, href]) => {
