@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { --ink:15 23 42; --ink-soft:51 65 85; --muted:100 116 139; --bg:247 248 252; --panel:255 255 255; --line:15 23 42; --brand:109 40 217; --brand-alt:37 99 235; }
+.dark { --ink:241 245 249; --ink-soft:203 213 225; --muted:148 163 184; --bg:8 12 28; --panel:255 255 255; --line:255 255 255; --brand:139 92 246; --brand-alt:96 165 250; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+body { @apply bg-bg font-sans text-ink antialiased; }
+:focus-visible { outline: 2px solid rgb(var(--brand-alt)); outline-offset: 3px; border-radius: 6px; }
+
+@layer components {
+  .glass { @apply rounded-2xl border border-line/10 bg-panel/[0.04] backdrop-blur-md; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition; }
+  .btn-primary { @apply btn bg-gradient-to-r from-brand to-brand-alt text-white shadow-lg shadow-brand/25 hover:brightness-110; }
+  .btn-ghost { @apply btn border border-line/15 bg-panel/[0.04] text-ink hover:border-brand/60; }
+  .badge { @apply rounded-md border border-line/10 bg-panel/[0.06] px-2.5 py-1 font-mono text-xs text-ink-soft; }
+  .section { @apply mx-auto max-w-6xl px-5 py-24 sm:px-8; }
+}
+.hero-glow { background: radial-gradient(60% 50% at 20% 0%, rgb(var(--brand) / .28), transparent 70%), radial-gradient(50% 40% at 90% 30%, rgb(var(--brand-alt) / .2), transparent 70%); }
+.caret { animation: blink 1s steps(2) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes floaty { 50% { transform: translateY(-8px); } }
+.floaty { animation: floaty 6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .caret, .floaty { animation: none; } }
